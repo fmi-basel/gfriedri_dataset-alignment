@@ -11,6 +11,7 @@ nav:
     - 'Tutorials': tutorial/tutorials.md
   - 'How-to Guide':
     - 'Guides': how_to/guides.md
+    - 'Parse SBEM Acquisition': how_to/parse_sbem_acquisition.md
   - Explanation:
     - 'Explanations': explanation/explanations.md
   - References:
