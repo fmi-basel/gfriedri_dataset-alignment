@@ -38,7 +38,7 @@ pydantic = ">=2.8.2,<2.9"
 
 [pypi-dependencies]
 sofima = {git="https://github.com/google-research/sofima"}
-em_alignment = {git="https://github.com/fmi-basel/gfriedri-em-alignment@refactor-tile-registration"}
+em_alignment = {git="https://github.com/fmi-basel/gfriedri-em-alignment@create_tile-id_maps"}
 jax = "*"
 
 [feature.docs.dependencies]
