@@ -227,3 +227,6 @@ results/**
 
 # TMP
 infrastructure/.tmp_*/**
+
+# runs
+runs/**
