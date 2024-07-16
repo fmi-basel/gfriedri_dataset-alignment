@@ -109,11 +109,6 @@ def main(
         end_section=end_section,
     )
 
-    for chunk, i in enumerate(range(0, len(section_yaml_files), chunk_size)):
-        section_yaml_files_chunk = section_yaml_files[i : i + chunk_size]
-        with open(f"section_yaml_files_chunk_{chunk}.yaml", "w") as f:
-            yaml.safe_dump(section_yaml_files_chunk, f)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
