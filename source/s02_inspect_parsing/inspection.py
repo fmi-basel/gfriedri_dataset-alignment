@@ -140,7 +140,8 @@ class Inspection:
             tile_id_map = np.array(json.load(f))
 
         tile_ids = set(tile_id_map.flatten())
-        tile_ids.remove(-1)
+        if -1 in tile_ids:
+            tile_ids.remove(-1)
 
         return section_tile_ids == tile_ids
 
