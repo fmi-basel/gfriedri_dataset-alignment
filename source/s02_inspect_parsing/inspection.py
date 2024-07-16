@@ -1,3 +1,4 @@
+import json
 import logging
 import argparse
 import os
@@ -6,7 +7,10 @@ import platform
 from pathlib import Path
 from typing import List, Union, Dict, Iterable, Optional
 import glob
+
+import numpy as np
 import yaml
+from tqdm import tqdm
 
 UniPath = Union[Path, str]
 
@@ -19,16 +23,13 @@ class Inspection:
 
         self.dir_sections = self.root / "sections"
         assert self.dir_sections.exists(), "{self.dir_sections} does not exist!"
-
-    def validate_parsed_sbem_acquisition(self) -> None:
-        """
-        Perform initial data processing for Inspection class
-        """
-        section_dirs = [
+        self.section_dirs = [
             Path(p) for p in self.filter_and_sort_sections(self.dir_sections)
         ]
+
+    def validate_parsed_sbem_acquisition(self) -> None:
         section_nums = [
-            int(Path(d).name.split("_")[0].strip("s")) for d in section_dirs
+            int(Path(d).name.split("_")[0].strip("s")) for d in self.section_dirs
         ]
         missing_sections = self.get_missing_sections(section_nums)
 
@@ -108,6 +109,41 @@ class Inspection:
             key=lambda name: int(Path(name).name.split("_")[0].strip("s")),
         )
 
+    def validate_tile_id_maps(self) -> None:
+        invalid_tile_id_maps = []
+        for section in tqdm(self.section_dirs):
+            if not self.valid_tile_id_map(section):
+                invalid_tile_id_maps.append(section.name)
+
+        output_path = self.root / "invalid_tile_id_maps.yaml"
+        with open(output_path, "w") as f:
+            yaml.safe_dump(invalid_tile_id_maps, f)
+
+        logging.warning(
+            f"There are {len(invalid_tile_id_maps)} invalid tile-id maps!\n"
+            f"Check {output_path}."
+        )
+
+    def valid_tile_id_map(self, section: Path) -> bool:
+        section_yaml = section / "section.yaml"
+        assert section_yaml.exists(), f"{section_yaml} does not exist!"
+
+        tile_id_map_json = section / "tile_id_map.json"
+        assert tile_id_map_json.exists(), f"{tile_id_map_json} does not exist!"
+
+        with open(section_yaml, "r") as f:
+            section_yaml_data = yaml.safe_load(f)
+
+        section_tile_ids = set([t["tile_id"] for t in section_yaml_data["tiles"]])
+
+        with open(tile_id_map_json, "r") as f:
+            tile_id_map = np.array(json.load(f))
+
+        tile_ids = set(tile_id_map.flatten())
+        tile_ids.remove(-1)
+
+        return section_tile_ids == tile_ids
+
 
 def cross_platform_path(path: str) -> str:
     """
@@ -171,3 +207,4 @@ if __name__ == "__main__":
 
     exp = Inspection(root, first, last)
     exp.validate_parsed_sbem_acquisition()
+    exp.validate_tile_id_maps()
