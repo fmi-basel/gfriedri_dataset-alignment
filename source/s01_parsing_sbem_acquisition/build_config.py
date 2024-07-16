@@ -9,6 +9,16 @@ def get_acquistion_config():
     sbem_root_dir = questionary.path("Path to the SBEM root directory:").ask()
     acquisition = questionary.text("Acquisition name:", default="run_0").ask()
     tile_grid = questionary.text("Tile Grid ID:", default="g0001").ask()
+    grid_shape = tuple(
+        map(
+            int,
+            questionary.text(
+                "sbem_config.Grid Shape (rows, cols):",
+                default="32, 42",
+                validate=lambda v: all([x.replace(" ", "").isdigit() for x in v.split(",")]),
+            ).ask().split(",")
+        )
+    )
     thickness = float(
         questionary.text(
             "sbem_config.Thickness:",
@@ -28,6 +38,7 @@ def get_acquistion_config():
         sbem_root_dir=sbem_root_dir,
         acquisition=acquisition,
         tile_grid=tile_grid,
+        grid_shape=grid_shape,
         thickness=thickness,
         resolution_xy=resolution_xy,
     )
