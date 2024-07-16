@@ -5,6 +5,7 @@ import questionary
 import yaml
 from parameter_config import AcquisitionConfig
 
+
 def get_acquistion_config():
     sbem_root_dir = questionary.path("Path to the SBEM root directory:").ask()
     acquisition = questionary.text("Acquisition name:", default="run_0").ask()
@@ -15,8 +16,12 @@ def get_acquistion_config():
             questionary.text(
                 "sbem_config.Grid Shape (rows, cols):",
                 default="32, 42",
-                validate=lambda v: all([x.replace(" ", "").isdigit() for x in v.split(",")]),
-            ).ask().split(",")
+                validate=lambda v: all(
+                    [x.replace(" ", "").isdigit() for x in v.split(",")]
+                ),
+            )
+            .ask()
+            .split(","),
         )
     )
     thickness = float(
