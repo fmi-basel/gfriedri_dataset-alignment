@@ -15,7 +15,8 @@ linux="4.18"
 source_status = { cmd = 'echo "Found $(git status --porcelain source | wc -l) untracked changes in ./source." && exit $(git status --porcelain source | wc -m)'}
 log_commit = {cmd = 'echo "[$(date -Iseconds)][Executing] $TASK [Git-Commit] $(git rev-parse --verify HEAD)" >> $WD/githash.log', env = {TASK = ""}}
 build_config_s01 = { cmd = "mkdir -p $WD ; TASK=BUILD_CONFIG pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/build_config.py", env = { WD = "runs/example"}, depends_on=["source_status"]}
-parse_sbem_acquisition = {cmd = "mkdir -p $WD ; TASK=PARSE_SBEM_ACQUISITION pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/s01_parse_data.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"]}
+parse_sbem_acquisition = { cmd = "mkdir -p $WD ; TASK=PARSE_SBEM_ACQUISITION pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/s01_parse_data.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
+inspect_parsing = { cmd = "mkdir -p $WD ; TASK=INSPECT_PARSING pixi run log_commit ; cd $WD ; python ../../source/s02_inspect_parsing/inspection.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
 
 [dependencies]
 python = "3.11"
