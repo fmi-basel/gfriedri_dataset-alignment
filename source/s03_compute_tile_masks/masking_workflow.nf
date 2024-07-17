@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.parse_sections_config = "smear_mask_workflow_config.yaml"
+params.parse_sections_config = "mask_workflow_config.yaml"
 
 process PARSESECTIONS {
     label 'cpu'
@@ -9,7 +9,7 @@ process PARSESECTIONS {
     path config
 
     output:
-    path "smear_mask_config_*.yaml"
+    path "mask_config_*.yaml"
 
     script:
     """
@@ -24,11 +24,11 @@ process COMPUTESMEARMASKS {
     path config
 
     output:
-    path "sections_with_smear_masks.yaml"
+    path "sections_with_masks.yaml"
 
     script:
     """
-    pixi run python $baseDir/create_simple_smear_masks.py --config $config
+    pixi run python $baseDir/create_masks.py --config $config
     """
 }
 

@@ -40,7 +40,7 @@ export NXF_EXECUTOR="slurm"
 export NXF_ANSI_LOG=false
 export NXF_HOME="$(pwd)/infrastructure/.nxf_home"
 
-MAIL="$mail_to" WD="$working_dir" pixi run smear_mask_workflow_slurm
+MAIL="$mail_to" WD="$working_dir" pixi run mask_workflow_slurm
 
 ### END OF PUT YOUR CODE IN THIS SECTION
 

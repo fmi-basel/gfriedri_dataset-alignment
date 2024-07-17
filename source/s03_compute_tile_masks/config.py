@@ -7,13 +7,17 @@ import yaml
 from pydantic import BaseModel, field_serializer
 
 
-class SmearMaskConfig(BaseModel):
+class MaskConfig(BaseModel):
     section_paths: list[Path]
     smear_extend: int
+    threshold: int = 20
+    filter_size: int = 10
+    range_limit: int = 20
 
     @field_serializer("section_paths")
     def path_to_str(paths: list[Path]):
         return [str(path) for path in paths]
+
 
 def build_config():
     section_dir = questionary.path("Path to the section directory:").ask()
@@ -38,6 +42,27 @@ def build_config():
             validate=lambda v: v.isdigit(),
         ).ask()
     )
+    threshold = int(
+        questionary.text(
+            "Threshold for silver particle detection",
+            default="20",
+            validate=lambda v: v.isdigit(),
+        ).ask()
+    )
+    filter_size = int(
+        questionary.text(
+            "Sensitivity parameter for dynamic range of image region",
+            default="10",
+            validate=lambda v: v.isdigit(),
+        ).ask()
+    )
+    range_limit = int(
+        questionary.text(
+            "Threshold for masking based on dynamic range",
+            default="10",
+            validate=lambda v: v.isdigit(),
+        ).ask()
+    )
     chunk_size = int(
         questionary.text(
             "Chunk size",
@@ -46,17 +71,23 @@ def build_config():
         ).ask()
     )
 
-    section_id = lambda x: int(basename(x).split("_")[0][1:])
+    def section_id(x):
+        return int(basename(x).split("_")[0][1:])
 
     section_paths = glob(str(Path(section_dir) / "s*_g*"))
     section_paths = sorted(section_paths, key=section_id)
-    section_paths = list(filter(lambda x: start_section <= section_id(x) <= end_section, section_paths))
+    section_paths = list(
+        filter(lambda x: start_section <= section_id(x) <= end_section, section_paths)
+    )
     for i, chunk in enumerate(range(0, len(section_paths), chunk_size)):
-        config = SmearMaskConfig(
-            section_paths=section_paths[chunk:chunk+chunk_size],
-            smear_extend=smear_extend
+        config = MaskConfig(
+            section_paths=section_paths[chunk : chunk + chunk_size],
+            smear_extend=smear_extend,
+            threshold=threshold,
+            filter_size=filter_size,
+            range_limit=range_limit,
         )
-        with open(f"smear_mask_config_{i}.yaml", "w") as f:
+        with open(f"mask_config_{i}.yaml", "w") as f:
             yaml.safe_dump(config.dict(), f, sort_keys=False)
 
 
