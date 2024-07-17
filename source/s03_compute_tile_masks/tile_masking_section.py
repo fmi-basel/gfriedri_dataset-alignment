@@ -6,7 +6,7 @@ import numpy as np
 import yaml
 from sbem.record.Section import Section
 from scipy import ndimage
-from skimage.morphology import binary_erosion, disk
+from skimage.morphology import binary_erosion
 
 
 class TileMaskingSection(Section):
@@ -86,11 +86,11 @@ class TileMaskingSection(Section):
         output_dir = Path(path) / self.get_name()
 
         tile_smearing_masks_npz = output_dir / "tile_smearing_masks.npz"
-        np.savez(tile_smearing_masks_npz, **self._tile_smearing_masks_cache)
+        np.savez_compressed(tile_smearing_masks_npz, **self._tile_smearing_masks_cache)
 
         tile_resin_masks_output_npz = output_dir / "tile_resin_masks.npz"
         keys_as_strings = {str(k): v for k, v in self._tile_resin_masks.items()}
-        np.savez(tile_resin_masks_output_npz, **keys_as_strings)
+        np.savez_compressed(tile_resin_masks_output_npz, **keys_as_strings)
 
     @staticmethod
     def compute_resin_mask(
@@ -152,7 +152,7 @@ class TileMaskingSection(Section):
         tile_id_map = self.get_tile_id_map(path_tile_id_map)
 
         mask = tile_id_map > -1
-        mask_eroded = binary_erosion(mask, footprint=disk(2))
+        mask_eroded = binary_erosion(mask, footprint=np.ones((3, 3)), mode='min')
         boundary_tiles = mask ^ mask_eroded
         return tile_id_map[boundary_tiles]
 
