@@ -12,6 +12,7 @@ nav:
   - 'How-to Guide':
     - 'Guides': how_to/guides.md
     - 'Parse SBEM Acquisition': how_to/parse_sbem_acquisition.md
+    - 'Inspect Parsing': how_to/inspect_parsing.md
   - Explanation:
     - 'Explanations': explanation/explanations.md
   - References:
