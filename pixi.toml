@@ -15,8 +15,10 @@ linux="4.18"
 source_status = { cmd = 'echo "Found $(git status --porcelain source | wc -l) untracked changes in ./source." && exit $(git status --porcelain source | wc -m)'}
 log_commit = {cmd = 'echo "[$(date -Iseconds)][Executing] $TASK [Git-Commit] $(git rev-parse --verify HEAD)" >> $WD/githash.log', env = {TASK = ""}}
 build_config_s01 = { cmd = "mkdir -p $WD ; TASK=BUILD_CONFIG pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/build_config.py", env = { WD = "runs/example"}, depends_on=["source_status"]}
-parse_sbem_acquisition = { cmd = "mkdir -p $WD ; TASK=PARSE_SBEM_ACQUISITION pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/s01_parse_data.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
-inspect_parsing = { cmd = "mkdir -p $WD ; TASK=INSPECT_PARSING pixi run log_commit ; cd $WD ; python ../../source/s02_inspect_parsing/inspection.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
+parse_sbem_acquisition = { cmd = "TASK=PARSE_SBEM_ACQUISITION pixi run log_commit ; cd $WD ; python ../../source/s01_parsing_sbem_acquisition/s01_parse_data.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
+inspect_parsing = { cmd = "TASK=INSPECT_PARSING pixi run log_commit ; cd $WD ; python ../../source/s02_inspect_parsing/inspection.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
+submit_smear_mask_workflow_slurm = { cmd = "TASK=SUBMIT_SMEAR_MASK_WORKFLOW_SLURM pixi run log_commit ; cd $WD ; sbatch ../../source/s03_compute_tile_masks/slurm-job_run_workflow.sh $ACCOUNT $MAILTO $WD", env = { ACCOUNT = "", MAILTO = "", WD = "runs/example"}, depends_on=["source_status"] }
+
 
 [dependencies]
 python = "3.11"
@@ -65,6 +67,9 @@ lint = { cmd="pre-commit run --all-files", depends_on=["install_hooks"] }
 
 [feature.nextflow.target.linux-64.dependencies]
 nextflow = ">=23.10.1,<23.11"
+
+[feature.nextflow.target.linux-64.tasks]
+smear_mask_workflow_slurm = { cmd = "WD=$WD TASK=SMEAR_MASK_WORKFLOW_SLURM pixi run log_commit ; cd $WD ; nextflow run ../../source/s03_compute_tile_masks/masking_workflow.nf --parse_sections_config $(pwd)/smear_mask_workflow_config.yaml -profile slurm -with-report -resume -with-timeline -N $MAIL", env = { WD = "runs/example", MAIL = ""}, depends_on = ["source_status"] }
 
 [feature.jupyter.dependencies]
 jupyter = ">=1.0.0,<1.1"
