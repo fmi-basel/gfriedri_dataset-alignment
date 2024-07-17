@@ -17,7 +17,7 @@ process PARSESECTIONS {
     """
 }
 
-process COMPUTESMEARMASKS {
+process COMPUTEMASKS {
     label 'cpu'
 
     input:
@@ -34,5 +34,5 @@ process COMPUTESMEARMASKS {
 
 workflow {
     section_chunks = PARSESECTIONS(params.parse_sections_config)
-    smear_masks = COMPUTESMEARMASKS(section_chunks.flatten())
+    smear_masks = COMPUTEMASKS(section_chunks.flatten())
 }
