@@ -89,7 +89,8 @@ class TileMaskingSection(Section):
         np.savez(tile_smearing_masks_npz, **self._tile_smearing_masks_cache)
 
         tile_resin_masks_output_npz = output_dir / "tile_resin_masks.npz"
-        np.savez(tile_resin_masks_output_npz, **self._tile_resin_masks)
+        keys_as_strings = {str(k): v for k, v in self._tile_resin_masks.items()}
+        np.savez(tile_resin_masks_output_npz, **keys_as_strings)
 
     @staticmethod
     def compute_resin_mask(
@@ -200,7 +201,7 @@ class TileMaskingSection(Section):
         tile_resin_masks_path = Path(path).parent / "tile_resin_masks.npz"
         if tile_resin_masks_path.exists():
             with np.load(tile_resin_masks_path) as npz:
-                tile_resin_masks = {k: npz[k] for k in npz.files}
+                tile_resin_masks = {int(k): npz[k] for k in npz.files}
             section._tile_resin_masks = tile_resin_masks
 
         section._section_path = path
