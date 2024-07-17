@@ -13,7 +13,7 @@ process PARSESECTIONS {
 
     script:
     """
-    pixi run python $baseDir/parse_sections.py --config $config
+    pixi run --frozen python $baseDir/parse_sections.py --config $config
     """
 }
 
@@ -28,7 +28,7 @@ process COMPUTESMEARMASKS {
 
     script:
     """
-    pixi run python $baseDir/create_masks.py --config $config
+    pixi run --frozen python $baseDir/create_masks.py --config $config
     """
 }
 
