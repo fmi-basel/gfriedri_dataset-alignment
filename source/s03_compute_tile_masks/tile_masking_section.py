@@ -141,7 +141,7 @@ class TileMaskingSection(Section):
     ) -> None:
         self._tile_resin_masks = {}
         for tile_id in self.outer_tile_ids():
-            img_data = self.get_tile(tile_id)
+            img_data = self.get_tile(tile_id).get_tile_data()
             self._tile_resin_masks[tile_id] = self.compute_resin_mask(
                 img_data, threshold, filter_size, range_limit
             )
@@ -170,6 +170,18 @@ class TileMaskingSection(Section):
             tile_width=dict["tile_width"],
             tile_overlap=dict["tile_overlap"],
         )
+
+        for t_dict in dict["tiles"]:
+            from sbem.record.Tile import Tile
+            tile = Tile(
+                section=section,
+                tile_id=t_dict["tile_id"],
+                path=t_dict["path"],
+                stage_x=t_dict["stage_x"],
+                stage_y=t_dict["stage_y"],
+                resolution_xy=t_dict["resolution_xy"],
+            )
+            section.tiles[tile.get_tile_id()] = tile
 
         tile_smearing_masks_path = Path(path).parent / "tile_smearing_masks.yaml"
         if tile_smearing_masks_path.exists():
