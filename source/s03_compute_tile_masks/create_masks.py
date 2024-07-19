@@ -1,7 +1,12 @@
 import argparse
+import gc
+import os
 from pathlib import Path
 
+import numpy as np
+import psutil
 import yaml
+from faim_ipa.utils import create_logger
 
 from config import MaskConfig
 from tile_masking_section import TileMaskingSection
@@ -18,11 +23,18 @@ def compute_masks(
     section.create_simple_smearing_masks(smear_extend=smear_extend)
     section.create_resin_masks(threshold, filter_size, range_limit)
     section.save(str(section_path.parent), overwrite=False)
+    del section
+    gc.collect()
 
 
 def main(config: MaskConfig):
+    logger = create_logger("compute-masks")
+    logger.info(f"Config: {config.dict()}")
+    python_process = psutil.Process(os.getpid())
+
     done_sections = []
     for section_path in config.section_paths:
+        logger.info(f"Processing {section_path}")
         compute_masks(
             section_path,
             smear_extend=config.smear_extend,
@@ -30,7 +42,7 @@ def main(config: MaskConfig):
             filter_size=config.filter_size,
             range_limit=config.range_limit,
         )
-        done_sections.append(str(section_path))
+        logger.info(f"Memory usage: {np.round(python_process.memory_info().rss / 1024**2, 2)}MB")
 
     with open("sections_with_masks.yaml", "w") as f:
         yaml.safe_dump(done_sections, f)

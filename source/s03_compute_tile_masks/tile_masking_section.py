@@ -1,7 +1,6 @@
 import hashlib
 from pathlib import Path
 
-import cv2
 import numpy as np
 import yaml
 from sbem.record.Section import Section
@@ -92,32 +91,22 @@ class TileMaskingSection(Section):
         keys_as_strings = {str(k): v for k, v in self._tile_resin_masks.items()}
         np.savez_compressed(tile_resin_masks_output_npz, **keys_as_strings)
 
-    @staticmethod
     def compute_resin_mask(
-        img_data,
+        self,
+        tile_id,
         thresh: int = 20,
         filter_size: int = 10,
         range_limit: int = 20,
     ) -> np.ndarray:
-
-        def fill_holes(mask: np.ndarray):
-            num_mask = np.asarray(mask, dtype=int)
-            filled_num_mask = ndimage.binary_fill_holes(num_mask)
-            filled_mask = filled_num_mask.astype(bool)
-            return filled_mask
-
         def detect_resin(a: np.ndarray) -> np.ndarray[bool]:
             # Identify silver particles
-            _, binary_image = cv2.threshold(a, thresh, 255, cv2.THRESH_BINARY)
-            binary_image = cv2.bitwise_not(binary_image)
+            binary_image = ((a <= thresh) * 255).astype(np.uint8)
 
             # Blur particles and perform thresholding again
             binary_image = ndimage.gaussian_filter(binary_image, sigma=125)
-            _, binary_image = cv2.threshold(
-                binary_image, thresh + 1, 255, cv2.THRESH_BINARY
-            )
+            binary_image = binary_image > (thresh + 1)
 
-            return fill_holes(binary_image)
+            return ndimage.binary_fill_holes(binary_image)
 
         def mask_low_dynamic_range(a: np.ndarray):
             # Masks areas with insufficient dynamic range.
@@ -125,9 +114,9 @@ class TileMaskingSection(Section):
                 ndimage.maximum_filter(a, filter_size)
                 - ndimage.minimum_filter(a, filter_size)
             ) < range_limit
-            a_mask = fill_holes(a_mask)
-            return a_mask
+            return ndimage.binary_fill_holes(a_mask)
 
+        img_data = self.get_tile(tile_id).get_tile_data()
         # Compute mask
         mask = detect_resin(img_data)
         # mask_resin = mutils.detect_resin(self.img_data, thresh)
@@ -142,9 +131,8 @@ class TileMaskingSection(Section):
     ) -> None:
         self._tile_resin_masks = {}
         for tile_id in self.outer_tile_ids():
-            img_data = self.get_tile(tile_id).get_tile_data()
             self._tile_resin_masks[tile_id] = self.compute_resin_mask(
-                img_data, threshold, filter_size, range_limit
+                tile_id, threshold, filter_size, range_limit
             )
 
     def outer_tile_ids(self):
