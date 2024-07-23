@@ -78,6 +78,17 @@ class TileMaskingSection(Section):
         ), "Tile smearing masks have not been initialized."
         return self._get_smearing_mask_from_cache(self._tile_smearing_masks[tile_id])
 
+    def get_resin_mask(self, tile_id: int) -> np.ndarray:
+        assert (
+            self._tile_resin_masks is not None
+        ), "Tile resin masks have not been initialized."
+        if tile_id not in self._tile_resin_masks:
+            return np.zeros(self.get_tile_shape(), dtype=bool)
+        return self._tile_resin_masks[tile_id]
+
+    def set_resin_mask(self, tile_id: int, mask: np.ndarray) -> None:
+        self._tile_resin_masks[tile_id] = mask
+
     def save(self, path: str, overwrite: bool = False):
         with open(Path(path) / self.get_name() / "tile_smearing_masks.yaml", "w") as f:
             yaml.safe_dump(self._tile_smearing_masks, f)

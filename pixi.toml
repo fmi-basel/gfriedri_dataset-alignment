@@ -20,7 +20,6 @@ inspect_parsing = { cmd = "TASK=INSPECT_PARSING pixi run log_commit ; cd $WD ; p
 build_tile_masking_config = { cmd = "TASK=BUILD_TILE_MASKING_CONFIG pixi run log_commit ; cd $WD ; python ../../source/s03_compute_tile_masks/parse_sections_config.py", env = { WD = "runs/example"}, depends_on=["source_status"]}
 submit_mask_workflow_slurm = { cmd = "TASK=SUBMIT_MASK_WORKFLOW_SLURM pixi run log_commit ; sbatch source/s03_compute_tile_masks/slurm-job_run-workflow.sh $ACCOUNT $MAILTO $WD", env = { ACCOUNT = "", MAILTO = "", WD = "runs/example"}, depends_on=["source_status"] }
 
-
 [dependencies]
 python = "3.11"
 ome-zarr = ">=0.9.0,<0.10"
@@ -81,6 +80,7 @@ jupyter = ">=1.0.0,<1.1"
 
 [feature.jupyter.tasks]
 jupyter = "jupyter lab"
+proof_read_masks = { cmd = "TASK=PROOF_READ_MASKS pixi run log_commit ; cp -n source/s03_compute_tile_masks/Proof_Read_Masks.ipynb $WD ; cd $WD ; jupyter lab ./Proof_Read_Masks.ipynb", env = { WD = "runs/example"}}#, depends_on=["source_status"] }
 
 [feature.nbdev.dependencies]
 nbdev = ">=2.2.10,<2.3"

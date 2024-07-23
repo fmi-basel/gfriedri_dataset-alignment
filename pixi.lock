@@ -8145,8 +8145,8 @@ packages:
 - kind: pypi
   name: jaxlib
   version: 0.4.30
-  url: https://files.pythonhosted.org/packages/a6/a3/951da3d1487b2f8995a2a14cc7e9496c9a7c93aa1f1d0b33e833e24dee92/jaxlib-0.4.30-cp311-cp311-manylinux2014_x86_64.whl
-  sha256: 16b2ab18ea90d2e15941bcf45de37afc2f289a029129c88c8d7aba0404dd0043
+  url: https://files.pythonhosted.org/packages/bb/1a/8f45ea28a5ca67e4d23ebd70fc78ea94be6fa20323f983c7607c32c6f9a5/jaxlib-0.4.30-cp311-cp311-win_amd64.whl
+  sha256: 3a2e2c11c179f8851a72249ba1ae40ae817dfaee9877d23b3b8f7c6b7a012f76
   requires_dist:
   - scipy>=1.9
   - numpy>=1.22
@@ -8156,8 +8156,8 @@ packages:
 - kind: pypi
   name: jaxlib
   version: 0.4.30
-  url: https://files.pythonhosted.org/packages/bb/1a/8f45ea28a5ca67e4d23ebd70fc78ea94be6fa20323f983c7607c32c6f9a5/jaxlib-0.4.30-cp311-cp311-win_amd64.whl
-  sha256: 3a2e2c11c179f8851a72249ba1ae40ae817dfaee9877d23b3b8f7c6b7a012f76
+  url: https://files.pythonhosted.org/packages/a6/a3/951da3d1487b2f8995a2a14cc7e9496c9a7c93aa1f1d0b33e833e24dee92/jaxlib-0.4.30-cp311-cp311-manylinux2014_x86_64.whl
+  sha256: 16b2ab18ea90d2e15941bcf45de37afc2f289a029129c88c8d7aba0404dd0043
   requires_dist:
   - scipy>=1.9
   - numpy>=1.22
@@ -12295,8 +12295,8 @@ packages:
 - kind: pypi
   name: ml-dtypes
   version: 0.4.0
-  url: https://files.pythonhosted.org/packages/84/17/a936d3dfad84d028ba8539a93167274b7dcd7985e0d9df487e94a62f9428/ml_dtypes-0.4.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  sha256: e1e2f4237b459a63c97c2c9f449baa637d7e4c20addff6a9bac486f22432f3b6
+  url: https://files.pythonhosted.org/packages/f0/36/290745178e5776f7416818abc1334c1b19afb93c7c87fd1bef3cc99f84ca/ml_dtypes-0.4.0-cp311-cp311-win_amd64.whl
+  sha256: 75b4faf99d0711b81f393db36d210b4255fd419f6f790bc6c1b461f95ffb7a9e
   requires_dist:
   - numpy>1.20
   - numpy>=1.21.2 ; python_version >= '3.10'
@@ -12311,8 +12311,8 @@ packages:
 - kind: pypi
   name: ml-dtypes
   version: 0.4.0
-  url: https://files.pythonhosted.org/packages/f0/36/290745178e5776f7416818abc1334c1b19afb93c7c87fd1bef3cc99f84ca/ml_dtypes-0.4.0-cp311-cp311-win_amd64.whl
-  sha256: 75b4faf99d0711b81f393db36d210b4255fd419f6f790bc6c1b461f95ffb7a9e
+  url: https://files.pythonhosted.org/packages/84/17/a936d3dfad84d028ba8539a93167274b7dcd7985e0d9df487e94a62f9428/ml_dtypes-0.4.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: e1e2f4237b459a63c97c2c9f449baa637d7e4c20addff6a9bac486f22432f3b6
   requires_dist:
   - numpy>1.20
   - numpy>=1.21.2 ; python_version >= '3.10'
