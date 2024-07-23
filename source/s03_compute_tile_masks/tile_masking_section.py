@@ -1,4 +1,5 @@
 import hashlib
+import platform
 from pathlib import Path
 
 import numpy as np
@@ -7,6 +8,55 @@ from sbem.record.Section import Section
 from scipy import ndimage
 from skimage.morphology import binary_erosion
 
+
+def win_to_ux_path(win_path: str, remove_substring=None) -> str:
+    if remove_substring:
+        win_path = win_path.replace(remove_substring, '/tungstenfs')
+
+    linux_path = win_path.replace('\\', '/')
+
+    linux_path = linux_path.replace('//', '', 1)
+
+    return linux_path
+
+
+def ux_to_win_path(ux_path: str, remove_substring=None) -> str:
+    if remove_substring:
+        ux_path = ux_path.replace(remove_substring,
+                                  r'\\tungsten-nas.fmi.ch\tungsten')
+
+    win_path = ux_path.replace('/', '\\')
+
+    return win_path
+
+def cross_platform_path(path: str) -> str:
+    """
+       Normalize the given filepath to use forward slashes on all platforms.
+       Additionally, remove Windows UNC prefix "\\tungsten-nas.fmi.ch\" if present
+
+       Parameters:
+           :rtype: object
+           :param path: The input filepath.
+
+       Returns:
+           str: The normalized filepath.
+       """
+
+    # Get the operating system name
+    os_name = platform.system()
+
+    if os_name == "Windows" and "/" in path:
+        # Running on Windows but path in UX style
+        path = ux_to_win_path(path, remove_substring="/tungstenfs")
+    elif os_name == "Windows" and r"\\tungsten-nas.fmi.ch\tungsten" in path:
+        path = path.replace(r"\\tungsten-nas.fmi.ch\tungsten", "W:")
+        path = path.replace('\\', '/')
+    elif os_name == "Linux" and "\\" in path:
+        # Running on UX but path in Win style
+        rs = r"\\tungsten-nas.fmi.ch\tungsten"
+        path = win_to_ux_path(path, remove_substring=rs)
+
+    return path
 
 class TileMaskingSection(Section):
     _section_path: str
@@ -181,6 +231,7 @@ class TileMaskingSection(Section):
                 stage_y=t_dict["stage_y"],
                 resolution_xy=t_dict["resolution_xy"],
             )
+            tile._path = cross_platform_path(tile._path)
             section.tiles[tile.get_tile_id()] = tile
 
         tile_smearing_masks_path = Path(path).parent / "tile_smearing_masks.yaml"
