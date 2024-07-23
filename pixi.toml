@@ -80,7 +80,7 @@ jupyter = ">=1.0.0,<1.1"
 
 [feature.jupyter.tasks]
 jupyter = "jupyter lab"
-proof_read_masks = { cmd = "TASK=PROOF_READ_MASKS pixi run log_commit ; cp -n source/s03_compute_tile_masks/Proof_Read_Masks.ipynb $WD ; cd $WD ; jupyter lab ./Proof_Read_Masks.ipynb", env = { WD = "runs/example"}}#, depends_on=["source_status"] }
+proof_read_masks = { cmd = "TASK=PROOF_READ_MASKS pixi run log_commit ; cp source/s03_compute_tile_masks/Proof_Read_Masks.ipynb $WD ; cd $WD ; jupyter lab ./Proof_Read_Masks.ipynb", env = { WD = "runs/example"}}#, depends_on=["source_status"] }
 
 [feature.nbdev.dependencies]
 nbdev = ">=2.2.10,<2.3"
