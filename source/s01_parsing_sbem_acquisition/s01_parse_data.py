@@ -220,3 +220,13 @@ if __name__ == "__main__":
         start_section=config["start_section"],
         end_section=config["end_section"],
     )
+
+    from inspection import cross_platform_path, Inspection
+
+    root = cross_platform_path(config["output_dir"])
+    first = config["start_section"]
+    last = config["end_section"]
+
+    exp = Inspection(root, first, last)
+    exp.validate_parsed_sbem_acquisition()
+    exp.validate_tile_id_maps()

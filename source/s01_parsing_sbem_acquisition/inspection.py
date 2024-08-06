@@ -1,6 +1,5 @@
 import json
 import logging
-import argparse
 import os
 import re
 import platform
@@ -191,21 +190,3 @@ def cross_platform_path(path: str) -> str:
         path = win_to_ux_path(path, remove_substring=rs)
 
     return path
-
-
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="parsing_config.yaml")
-    args = parser.parse_args()
-
-    with open(args.config) as f:
-        config = yaml.safe_load(f)
-
-    root = cross_platform_path(config["output_dir"])
-    first = config["start_section"]
-    last = config["end_section"]
-
-    exp = Inspection(root, first, last)
-    exp.validate_parsed_sbem_acquisition()
-    exp.validate_tile_id_maps()
