@@ -19,6 +19,7 @@ parse_sbem_acquisition = { cmd = "TASK=PARSE_SBEM_ACQUISITION pixi run log_commi
 inspect_parsing = { cmd = "TASK=INSPECT_PARSING pixi run log_commit ; cd $WD ; python ../../source/s02_inspect_parsing/inspection.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
 build_tile_masking_config = { cmd = "TASK=BUILD_TILE_MASKING_CONFIG pixi run log_commit ; cd $WD ; python ../../source/s03_compute_tile_masks/parse_sections_config.py", env = { WD = "runs/example"}, depends_on=["source_status"]}
 submit_mask_workflow_slurm = { cmd = "TASK=SUBMIT_MASK_WORKFLOW_SLURM pixi run log_commit ; sbatch source/s03_compute_tile_masks/slurm-job_run-workflow.sh $ACCOUNT $MAILTO $WD", env = { ACCOUNT = "", MAILTO = "", WD = "runs/example"}, depends_on=["source_status"] }
+submit_sbem_parsing_slurm = { cmd = "TASK=SUBMIT_SBEM_PARSING_SLURM pixi run log_commit ; sbatch source/s01_parsing_sbem_acquisition/slurm-job_run-parsing.sh $ACCOUNT $WD", env = { ACCOUNT = "", WD = "runs/example"}, depends_on=["source_status"] }
 
 [dependencies]
 python = "3.11"
