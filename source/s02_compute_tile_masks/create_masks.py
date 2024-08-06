@@ -42,7 +42,9 @@ def main(config: MaskConfig):
             filter_size=config.filter_size,
             range_limit=config.range_limit,
         )
-        logger.info(f"Memory usage: {np.round(python_process.memory_info().rss / 1024**2, 2)}MB")
+        logger.info(
+            f"Memory usage: {np.round(python_process.memory_info().rss / 1024**2, 2)}MB"
+        )
 
     with open("sections_with_masks.yaml", "w") as f:
         yaml.safe_dump(done_sections, f)
