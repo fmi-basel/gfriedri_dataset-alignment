@@ -40,6 +40,10 @@ export NXF_EXECUTOR="slurm"
 export NXF_ANSI_LOG=false
 export NXF_HOME="$(pwd)/infrastructure/.nxf_home"
 
+### Print working_dir and mail_to
+echo "[INFO] [$STARTDATE] [$$] WD: $working_dir"
+echo "[INFO] [$STARTDATE] [$$] MAIL: $mail_to"
+
 MAIL="$mail_to" WD="$working_dir" pixi run estimate_coarse_offsets_slurm
 
 ### END OF PUT YOUR CODE IN THIS SECTION
