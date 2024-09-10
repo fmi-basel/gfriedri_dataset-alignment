@@ -313,7 +313,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/ad/e05dfb934ab7ac55c6bb2e6f2b8de8641bcaec0a35078c3e91f645cd43ad/jax-0.4.29-py3-none-any.whl
@@ -550,7 +550,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -868,7 +868,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -1107,7 +1107,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -1435,7 +1435,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -1692,7 +1692,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -2035,7 +2035,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a6/a3/951da3d1487b2f8995a2a14cc7e9496c9a7c93aa1f1d0b33e833e24dee92/jaxlib-0.4.30-cp311-cp311-manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/96/d7/f318261e6ccbba86bdf626e07cd850981508fdaec52cfcdc4ac1030327ab/marshmallow-3.21.3-py3-none-any.whl
@@ -2296,7 +2296,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/1a/8f45ea28a5ca67e4d23ebd70fc78ea94be6fa20323f983c7607c32c6f9a5/jaxlib-0.4.30-cp311-cp311-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/96/d7/f318261e6ccbba86bdf626e07cd850981508fdaec52cfcdc4ac1030327ab/marshmallow-3.21.3-py3-none-any.whl
@@ -2748,7 +2748,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/c3/be/d0d44e092656fe7a06b55e6103cbce807cdbdee17884a5367c68c9860853/dataclasses_json-0.6.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -3124,7 +3124,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/c3/be/d0d44e092656fe7a06b55e6103cbce807cdbdee17884a5367c68c9860853/dataclasses_json-0.6.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -3520,7 +3520,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/c3/be/d0d44e092656fe7a06b55e6103cbce807cdbdee17884a5367c68c9860853/dataclasses_json-0.6.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -3836,7 +3836,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/c3/be/d0d44e092656fe7a06b55e6103cbce807cdbdee17884a5367c68c9860853/dataclasses_json-0.6.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -4264,7 +4264,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -4503,7 +4503,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d0/ba/75c66e3f2b375d02b9f2e6f32133036a5876d52fe9644c924db9b0405803/faim_ipa-0.3.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/cd/c883e1a7c447479d6e13985565080e3fea88ab5a107c21684c813dba1875/flexcache-0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a3/28/5ce78a4838bb9da1bd9f64bc79ba12ddbfcb4824a11ef41da6f05d3240ef/flexparser-0.3.1-py3-none-any.whl
-      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+      - pypi: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/f2/9dbb75de3058acfd1600cf0839bcce7ea391148c9d2b4fa5f5666e66f09e/jax-0.4.30-py3-none-any.whl
@@ -6166,8 +6166,8 @@ packages:
   timestamp: 1718732627753
 - kind: pypi
   name: em-alignment
-  version: 0.2.5.dev11+g1d7fb8f
-  url: git+https://github.com/fmi-basel/gfriedri-em-alignment@1d7fb8fdffc6ffd7ea2c121730366235a2c5b385
+  version: 0.2.5.dev12+g67c5e0f
+  url: git+https://github.com/fmi-basel/gfriedri-em-alignment@67c5e0fb1b38ec096ae759ccff2917d18e8cf842
   requires_dist:
   - gitpython
   - fsspec
@@ -6965,7 +6965,7 @@ packages:
   sha256: eec7ec56b92aad751f9912a73404bc02ba212a23adb2c7098ee668417051a1ff
   requires_dist:
   - gitdb<5,>=4.0.1
-  - typing-extensions>=3.7.4.3 ; python_version < '3.8'
+  - typing-extensions>=3.7.4.3 ; python_full_version < '3.8'
   - sphinx==4.3.2 ; extra == 'doc'
   - sphinx-rtd-theme ; extra == 'doc'
   - sphinxcontrib-applehelp<=1.0.4,>=1.0.2 ; extra == 'doc'
@@ -6983,8 +6983,8 @@ packages:
   - pytest-instafail ; extra == 'test'
   - pytest-mock ; extra == 'test'
   - pytest-sugar ; extra == 'test'
-  - typing-extensions ; python_version < '3.11' and extra == 'test'
-  - mock ; python_version < '3.8' and extra == 'test'
+  - typing-extensions ; python_full_version < '3.11' and extra == 'test'
+  - mock ; python_full_version < '3.8' and extra == 'test'
   requires_python: '>=3.7'
 - kind: conda
   name: gitpython
@@ -8067,10 +8067,10 @@ packages:
   - numpy>=1.22
   - opt-einsum
   - scipy>=1.9
-  - importlib-metadata>=4.6 ; python_version < '3.10'
-  - numpy>=1.23.2 ; python_version >= '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
-  - scipy>=1.11.1 ; python_version >= '3.12'
+  - importlib-metadata>=4.6 ; python_full_version < '3.10'
+  - numpy>=1.23.2 ; python_full_version >= '3.11'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
+  - scipy>=1.11.1 ; python_full_version >= '3.12'
   - jaxlib==0.4.28 ; extra == 'ci'
   - jaxlib==0.4.29 ; extra == 'cpu'
   - jaxlib==0.4.29+cuda12.cudnn91 ; extra == 'cuda'
@@ -8115,10 +8115,10 @@ packages:
   - numpy>=1.22
   - opt-einsum
   - scipy>=1.9
-  - importlib-metadata>=4.6 ; python_version < '3.10'
-  - numpy>=1.23.2 ; python_version >= '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
-  - scipy>=1.11.1 ; python_version >= '3.12'
+  - importlib-metadata>=4.6 ; python_full_version < '3.10'
+  - numpy>=1.23.2 ; python_full_version >= '3.11'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
+  - scipy>=1.11.1 ; python_full_version >= '3.12'
   - jaxlib==0.4.29 ; extra == 'ci'
   - jaxlib==0.4.30 ; extra == 'cuda'
   - jax-cuda12-plugin[with-cuda]<=0.4.30,>=0.4.30 ; extra == 'cuda'
@@ -8142,7 +8142,7 @@ packages:
   - scipy>=1.9
   - numpy>=1.22
   - ml-dtypes>=0.2.0
-  - scipy>=1.11.1 ; python_version >= '3.12'
+  - scipy>=1.11.1 ; python_full_version >= '3.12'
   requires_python: '>=3.9'
 - kind: pypi
   name: jaxlib
@@ -8153,7 +8153,7 @@ packages:
   - scipy>=1.9
   - numpy>=1.22
   - ml-dtypes>=0.2.0
-  - scipy>=1.11.1 ; python_version >= '3.12'
+  - scipy>=1.11.1 ; python_full_version >= '3.12'
   requires_python: '>=3.9'
 - kind: conda
   name: jaxlib
@@ -11954,7 +11954,7 @@ packages:
   - jinja2>=2.9
   - rich>=11.2.0
   - textual>=0.41.0
-  - typing-extensions ; python_version < '3.8.0'
+  - typing-extensions ; python_full_version < '3.8'
   - asv ; extra == 'benchmark'
   - cython ; extra == 'dev'
   - pytest ; extra == 'dev'
@@ -11973,8 +11973,8 @@ packages:
   - sphinx-argparse ; extra == 'dev'
   - towncrier ; extra == 'dev'
   - asv ; extra == 'dev'
-  - greenlet ; python_version < '3.13' and extra == 'dev'
-  - setuptools ; python_version >= '3.12' and extra == 'dev'
+  - greenlet ; python_full_version < '3.13' and extra == 'dev'
+  - setuptools ; python_full_version >= '3.12' and extra == 'dev'
   - ipython ; extra == 'docs'
   - bump2version ; extra == 'docs'
   - sphinx ; extra == 'docs'
@@ -11992,8 +11992,8 @@ packages:
   - ipython ; extra == 'test'
   - pytest-textual-snapshot ; extra == 'test'
   - textual!=0.65.2,!=0.66,>=0.43 ; extra == 'test'
-  - greenlet ; python_version < '3.13' and extra == 'test'
-  - setuptools ; python_version >= '3.12' and extra == 'test'
+  - greenlet ; python_full_version < '3.13' and extra == 'test'
+  - setuptools ; python_full_version >= '3.12' and extra == 'test'
   requires_python: '>=3.7.0'
 - kind: conda
   name: mergedeep
@@ -12240,9 +12240,9 @@ packages:
   sha256: e1e2f4237b459a63c97c2c9f449baa637d7e4c20addff6a9bac486f22432f3b6
   requires_dist:
   - numpy>1.20
-  - numpy>=1.21.2 ; python_version >= '3.10'
-  - numpy>=1.23.3 ; python_version >= '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
+  - numpy>=1.21.2 ; python_full_version >= '3.10'
+  - numpy>=1.23.3 ; python_full_version >= '3.11'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
   - absl-py ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pytest-xdist ; extra == 'dev'
@@ -12256,9 +12256,9 @@ packages:
   sha256: 75b4faf99d0711b81f393db36d210b4255fd419f6f790bc6c1b461f95ffb7a9e
   requires_dist:
   - numpy>1.20
-  - numpy>=1.21.2 ; python_version >= '3.10'
-  - numpy>=1.23.3 ; python_version >= '3.11'
-  - numpy>=1.26.0 ; python_version >= '3.12'
+  - numpy>=1.21.2 ; python_full_version >= '3.10'
+  - numpy>=1.23.3 ; python_full_version >= '3.11'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
   - absl-py ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pytest-xdist ; extra == 'dev'
@@ -15494,7 +15494,7 @@ packages:
   - ipywidgets>=7.5.1,<9 ; extra == 'jupyter'
   - markdown-it-py>=2.2.0
   - pygments>=2.13.0,<3.0.0
-  - typing-extensions>=4.0.0,<5.0 ; python_version < '3.9'
+  - typing-extensions>=4.0.0,<5.0 ; python_full_version < '3.9'
   requires_python: '>=3.7.0'
 - kind: conda
   name: rich
@@ -15777,7 +15777,7 @@ packages:
   - pytest-subprocess ; extra == 'test'
   - pyproject-hooks!=1.1 ; extra == 'test'
   - jaraco-test ; extra == 'test'
-  - jaraco-develop>=7.21 ; (python_version >= '3.9' and sys_platform != 'cygwin') and extra == 'test'
+  - jaraco-develop>=7.21 ; python_full_version >= '3.9' and sys_platform != 'cygwin' and extra == 'test'
   - pytest-ruff>=0.3.2 ; sys_platform != 'cygwin' and extra == 'test'
   - pytest-perf ; sys_platform != 'cygwin' and extra == 'test'
   requires_python: '>=3.8'
@@ -16702,7 +16702,7 @@ packages:
   requires_dist:
   - mypy-extensions>=0.3.0
   - typing-extensions>=3.7.4
-  - typing>=3.7.4 ; python_version < '3.5'
+  - typing>=3.7.4 ; python_full_version < '3.5'
 - kind: conda
   name: typing_extensions
   version: 4.12.2

@@ -100,7 +100,7 @@ pyqt = "*"
 system-requirements = {cuda = "11"}
 
 [feature.cuda.target.linux-64.dependencies]
-jaxlib="*=*cuda112*"
+jaxlib= { version="*", build="*cuda112*" }
 cuda-nvcc = {version="=11.7", channel="nvidia"}
 
 [environments]
