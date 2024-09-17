@@ -96,4 +96,4 @@ if __name__ == "__main__":
     with open(args.config) as f:
         config = yaml.safe_load(f)
 
-    main(config)
+    main(config=AcquisitionConfig(**config["acquisition_config"]))
