@@ -9,7 +9,6 @@ from pathlib import Path
 from typing import Optional, List
 import yaml
 
-from parameter_config import AcquisitionConfig
 from inspection_utils import (
     aggregate_coarse_offsets,
     aggregate_tile_id_maps,
@@ -23,8 +22,8 @@ def section_id(x):
 
 
 class Inspection:
-    def __init__(self, config: AcquisitionConfig):
-        self.root = Path(cross_platform_path(config.sbem_root_dir))
+    def __init__(self, exp_path: str):
+        self.root = Path(cross_platform_path(exp_path))
         self.dir_sections = self.root / "sections"
         self.dir_stitched = self.root / "stitched-sections"
         self.dir_inspect = self.root / "_inspect"
@@ -79,8 +78,8 @@ class Inspection:
         return
 
 
-def main(config: AcquisitionConfig):
-    exp = Inspection(config)
+def main(exp_path: str):
+    exp = Inspection(exp_path)
     exp.list_all_section_dirs()
     exp.backup_coarse_offsets()
     exp.backup_tile_id_maps()
@@ -96,4 +95,4 @@ if __name__ == "__main__":
     with open(args.config) as f:
         config = yaml.safe_load(f)
 
-    main(config=AcquisitionConfig(**config["acquisition_config"]))
+    main(exp_path=config["output_dir"])
