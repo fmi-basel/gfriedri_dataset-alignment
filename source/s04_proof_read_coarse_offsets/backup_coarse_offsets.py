@@ -24,7 +24,7 @@ def section_id(x):
 
 class Inspection:
     def __init__(self, config: AcquisitionConfig):
-        self.root = Path(cross_platform_path(config.sbem_root_dir))
+        self.root = Path(cross_platform_path(config["sbem_root_dir"]))
         self.dir_sections = self.root / "sections"
         self.dir_stitched = self.root / "stitched-sections"
         self.dir_inspect = self.root / "_inspect"
