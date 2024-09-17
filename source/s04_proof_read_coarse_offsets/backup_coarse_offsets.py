@@ -1,4 +1,5 @@
 import argparse
+import os
 from glob import glob
 import logging
 from os.path import basename
@@ -13,6 +14,7 @@ from inspection_utils import (
     aggregate_coarse_offsets,
     aggregate_tile_id_maps,
     locate_inf_vals,
+    cross_platform_path,
 )
 
 
@@ -22,7 +24,7 @@ def section_id(x):
 
 class Inspection:
     def __init__(self, config: AcquisitionConfig):
-        self.root = Path(config.sbem_root_dir)
+        self.root = Path(cross_platform_path(config["sbem_root_dir"]))
         self.dir_sections = self.root / "sections"
         self.dir_stitched = self.root / "stitched-sections"
         self.dir_inspect = self.root / "_inspect"
@@ -43,6 +45,9 @@ class Inspection:
         for p in missing_files:
             logging.debug(p)
 
+        if not self.dir_inspect.exists():
+            os.mkdir(str(self.dir_inspect))
+
         fp_out = self.path_cxyz
         np.savez(fp_out, **offsets)
         logging.info(f"Coarse offsets saved to: {fp_out}")
@@ -59,6 +64,9 @@ class Inspection:
         logging.debug(f"len missing files {len(missing_files)}")
         for p in missing_files:
             logging.debug(p)
+
+        if not self.dir_inspect.exists():
+            os.mkdir(str(self.dir_inspect))
 
         fp_out = self.path_id_maps
         np.savez(fp_out, **tile_id_maps)
