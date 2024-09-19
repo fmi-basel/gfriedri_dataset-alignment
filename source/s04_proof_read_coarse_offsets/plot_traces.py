@@ -10,11 +10,18 @@ from inspection_utils import plot_trace_from_backup, get_tile_ids_set
 def main_plot_traces(
     exp_path: str, trace_ids: Optional[Iterable[int]] = None, in_parallel: bool = False
 ):
-
+    # Init experiment
     exp = Inspection(exp_path)
 
-    # Determine traces to be plotted
     traces_out_dir = exp.dir_inspect / "traces"
+    if not traces_out_dir.exists():
+        try:
+            traces_out_dir.mkdir(parents=True, exist_ok=True)
+            print(f"Directory created at: {traces_out_dir}")
+        except Exception as e:
+            print(f"Error creating directory: {e}")
+
+    # Determine traces to be plotted
     ids_to_plot = sorted(list(get_tile_ids_set(str(exp.path_id_maps))))
     if trace_ids is not None:
         ids_to_plot = trace_ids
