@@ -2,9 +2,11 @@ import json
 import logging
 import platform
 from pathlib import Path
-from typing import Tuple, List, Union, Optional, Dict
+from typing import Tuple, List, Union, Optional, Dict, Set
 
 import numpy as np
+from matplotlib import pyplot as plt
+from matplotlib.ticker import MaxNLocator
 from numpy import ndarray
 from tqdm import tqdm
 
@@ -70,6 +72,55 @@ def get_section_num(section_path: UniPath) -> Optional[int]:
         return None
 
 
+def get_vert_tile_id(tile_id_map: np.ndarray, tile_id: int) -> Optional[int]:
+    """
+    Retrieves the tile ID located directly below the specified tile ID in the given tile ID map.
+
+    Example:
+        tile_id_map = np.array([[1, 2, 3],
+                                [4, 5, 6],
+                                [7, 8, 9]])
+        get_vert_tile_id(tile_id_map, 5) returns:  8
+        get_vert_tile_id(tile_id_map, 9) returns: None
+    """
+    tile_id = int(tile_id)
+    if not isinstance(tile_id, int):
+        raise ValueError(
+            f"Invalid tile_id '{tile_id}' specification: must be an integer."
+        )
+
+    if tile_id < 0:
+        logging.warning("Invalid tile_id specification (must be non-negative)!")
+        return None
+
+    if tile_id not in tile_id_map:
+        # logging.debug(f"Invalid tile_id specification ({tile_id} not in tile_id_map)!")
+        return None
+
+    y, x = np.where(tile_id == tile_id_map)
+    y, x = y[0], x[0]
+    try:
+        return int(tile_id_map[y + 1][x])
+    except IndexError as _:
+        # logging.debug(f"tile_id {tile_id} not found in tile_id_map.")
+        return None
+
+
+def get_tid_idx(tile_id_map, tile_id) -> Optional[Tuple[int, int]]:
+    # Extract y, x coordinate of tile_id in tile_id_map
+    if tile_id not in tile_id_map:
+        # logging.info(f'Tile_ID: {tile_id} not present in section!')
+        return None
+
+    if tile_id == -1:
+        logging.info(f"Tile_ID: {tile_id} has undefined mask!")
+        return None
+
+    coords = np.where(tile_id == tile_id_map)
+    y, x = int(coords[0][0]), int(coords[1][0])
+    return y, x
+
+
 def get_tile_id_map(path_tid_map: UniPath) -> np.ndarray:
     """Loads a JSON file containing a tile ID map and return it as a NumPy array.
 
@@ -86,6 +137,23 @@ def get_tile_id_map(path_tid_map: UniPath) -> np.ndarray:
     except (FileNotFoundError, json.JSONDecodeError) as e:
         # Handle file not found or JSON decoding errors gracefully.
         raise ValueError(f"Error loading tile ID map from {path_tid_map}: {str(e)}")
+
+
+def get_tile_ids_set(path_all_tid_maps: str) -> Set[int]:
+    try:
+        path_tid_maps = Path(path_all_tid_maps).parent / "all_tile_id_maps.npz"
+        tid_maps = np.load(str(path_tid_maps), allow_pickle=True)
+    except FileNotFoundError as _:
+        tid_maps = None
+        logging.warning("Error reading all_tile_id_maps.npz")
+
+    tile_ids = set()
+    for tid in tid_maps.values():
+        tile_ids |= set(tid.flatten())
+
+    tile_ids.remove(-1)
+
+    return tile_ids
 
 
 def aggregate_tile_id_maps(
@@ -298,3 +366,136 @@ def locate_inf_vals(
         )
 
     return all_coords
+
+
+def plot_trace_from_backup(
+    path_cxyz: str,
+    path_id_maps: str,
+    path_plot: str,
+    tile_id: int,
+    sec_range: Tuple[Optional[int], Optional[int]],
+    show_plot: bool,
+):
+    """Plots traces from input cxyz tensor
+
+    Args:
+        path_cxyz: str -  path to aggregated file containing all coarse offsets
+        path_id_map: str - path to aggregated file containing all tile_id_maps
+        path_plot: str - path where to store resulting graph
+        tile_id: int - ID of the tile trace to be plotted
+        sec_range: Optional[tuple(int, int)] - range of section numbers to be plotted
+
+    :return:
+    """
+
+    def plot_traces(
+        x_axis: np.ndarray,
+        traces: np.ndarray,
+        _path_plot: str,
+        _tile_id: int,
+        _vert_nn_tile_id: Optional[int],
+        _show_plot: bool,
+    ) -> None:
+        """Plots array of both coarse offset vectors' values"""
+
+        fig, ax = plt.subplots(figsize=(15, 9))
+        labels = ("c0x", "c0y", "c1x", "c1y")
+        for j in range(traces.shape[0]):
+            ax.plot(x_axis, traces[j, :], "-", label=f"{labels[j]}")
+
+        # Add labels, title, and legend
+        ax.set_xlabel("Section number")
+        ax.set_ylabel("Shift [pix]")
+        nn_tile_id = "" if _vert_nn_tile_id is None else f" ({str(_vert_nn_tile_id)})"
+        ax.set_title(f"Coarse Offsets for Tile ID {_tile_id} {nn_tile_id}")
+        ax.legend(loc="upper right")
+        ax.grid(True)
+
+        # Adjust x-axis and y-axis ticks density
+        ax.xaxis.set_major_locator(MaxNLocator(integer=True, nbins=30))
+        ax.yaxis.set_major_locator(MaxNLocator(integer=True, nbins=20))
+
+        plt.savefig(_path_plot)
+        if _show_plot:
+            plt.show()
+
+        plt.close(fig)
+        return
+
+    path_cxyz = Path(cross_platform_path(path_cxyz))
+    path_id_maps = Path(cross_platform_path(path_id_maps))
+    path_plot = cross_platform_path(path_plot)
+
+    if path_cxyz.exists() and path_id_maps.exists():
+        # Load coarse offsets
+        cxyz_obj = np.load(path_cxyz)
+        cxyz_keys = list(cxyz_obj.files)
+        sec_nums = set(map(int, cxyz_keys))
+
+        # Load tile_id_maps
+        tile_id_maps = np.load(path_id_maps)
+        tile_id_maps_keys = list(tile_id_maps.files)
+        sec_nums_id_maps = set(map(int, tile_id_maps_keys))
+
+        # Compatible section numbers
+        sec_nums = sec_nums.intersection(sec_nums_id_maps)
+
+        if len(sec_nums) == 0:
+            # Not possible to map tile_id_map files to the coarse offset files
+            print("Available offsets maps and tile_id_maps do not match.")
+            return
+
+        # Select range of sections to be processed
+        first, last = sec_range
+        if first is None:
+            first = min(sec_nums)
+
+        if last is None:
+            last = max(sec_nums)
+
+        if first > last:
+            logging.warning("Plot traces: wrong section range definition.")
+            return
+
+        sec_nums_plot = set(np.arange(first, last, step=1))
+        sec_nums_plot = sec_nums.intersection(sec_nums_plot)
+        logging.info(
+            f"Trace plotting: {len(sec_nums_plot)} sections will be processed."
+        )
+
+        if len(sec_nums_plot) > 1:
+
+            arr = np.full(shape=(4, last - first), fill_value=np.nan)
+            x_axis_sec_nums = np.arange(first, last)
+            vert_nn_tile_id = None
+            for i, num in enumerate(x_axis_sec_nums):
+                if num in sec_nums_plot:
+                    tile_id_map = tile_id_maps[str(num)]
+                    if vert_nn_tile_id is None:
+                        vert_nn_tile_id = get_vert_tile_id(tile_id_map, tile_id)
+                    coord = get_tid_idx(tile_id_map, tile_id)
+                    if coord is not None:
+                        y, x = coord
+                        try:
+                            shifts = cxyz_obj[str(num)][:, :, y, x]
+                            arr[:, i] = shifts.flatten().transpose()
+                        except IndexError as _:
+                            logging.warning(
+                                f"Trace plotting: unable to determine shifts of s{num} t{tile_id}"
+                            )
+                    else:
+                        continue
+
+            if not np.all(np.isnan(arr)):
+                plot_traces(
+                    x_axis_sec_nums, arr, path_plot, tile_id, vert_nn_tile_id, show_plot
+                )
+        else:
+            print(
+                f"Nothing to plot. Sections {first} : {last} not in available"
+                f"range: [{min(sec_nums)} : {max(sec_nums)}]."
+            )
+            return
+    else:
+        print(f"Input files are missing. Check path_cxyz: {path_cxyz}")
+    return
