@@ -75,6 +75,7 @@ class TraceOutlierDetector:
 
     def store_outliers(self, mapped_outliers: dict) -> None:
         path_out = str(self.dir_inspect / "coarse_offset_outliers.txt")
+
         logging.info(f"Storing outliers to: {path_out}")
 
         fmt_outs = [np.array((k,) + v) for k, v in mapped_outliers.items()]
@@ -152,6 +153,7 @@ if __name__ == "__main__":
         default=None,
         help="Optional list of trace IDs (space-separated).",
     )
+
     args = parser.parse_args()
 
     with open(args.config) as f:
