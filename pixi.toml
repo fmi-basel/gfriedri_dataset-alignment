@@ -23,6 +23,7 @@ build_estimate_coarse_offsets_config = { cmd = "TASK=BUILD_ESTIMATE_COARSE_OFFSE
 submit_estimate_coarse_offset_slurm = { cmd = "TASK=SUBMIT_ESTIMATE_COARSE_OFFSETS_SLURM pixi run log_commit ; sbatch source/s03_estimate_coarse_offsets/slurm-job_run-workflow.sh $ACCOUNT $MAILTO $WD", env = { ACCOUNT = "", MAILTO = "", WD = "runs/example"}, depends_on=["source_status"] }
 backup_coarse_offsets = { cmd = "TASK=BACKUP_COARSE_OFFSETS pixi run log_commit ; cd $WD ; python ../../source/s04_proof_read_coarse_offsets/backup_coarse_offsets.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
 plot_traces = { cmd = "TASK=PLOT_TRACES pixi run log_commit ; cd $WD ; python ../../source/s04_proof_read_coarse_offsets/plot_traces.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
+identify_outliers = { cmd = "TASK=IDENTIFY_OUTLIERS pixi run log_commit ; cd $WD ; python ../../source/s04_proof_read_coarse_offsets/identify_outliers.py --config parsing_config.yaml", env = { WD = "runs/example"}, depends_on=["source_status"] }
 
 [dependencies]
 python = "3.11"
