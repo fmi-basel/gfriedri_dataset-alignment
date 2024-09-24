@@ -152,7 +152,6 @@ def get_tile_ids_set(path_all_tid_maps: str) -> Set[int]:
         tile_ids |= set(tid.flatten())
 
     tile_ids.remove(-1)
-
     return tile_ids
 
 
@@ -499,3 +498,77 @@ def plot_trace_from_backup(
     else:
         print(f"Input files are missing. Check path_cxyz: {path_cxyz}")
     return
+
+
+def rolling_mean_std(
+    data: np.ndarray, window_size: int, min_win_length: int, max_win_length: int
+) -> Tuple[np.ndarray, np.ndarray]:
+
+    n = len(data)
+    mean = np.zeros(n)
+    std = np.zeros(n)
+    half_window = window_size // 2
+
+    for i in range(n):
+
+        # Check if the current data point is np.inf
+        if np.isinf(data[i]):
+            mean[i] = np.nan
+            std[i] = np.nan
+            continue
+
+        # Initialize masked_window
+        start = max(0, i - half_window)
+        end = min(n, i + half_window + 1)
+
+        # Create masked window excluding the current value
+        masked_window = np.ma.masked_invalid(data[start:end])
+        masked_window[i - start] = np.ma.masked  # Exclude current value
+
+        # Adjust window size if necessary
+        while (
+            masked_window.count() < min_win_length and half_window < max_win_length // 2
+        ):
+            half_window += 1  # Increase the half window size
+            start = max(0, i - half_window)
+            end = min(n, i + half_window + 1)
+            masked_window = np.ma.masked_invalid(data[start:end])
+            if start == 0 and end == n:
+                break
+
+        # Calculate mean and std
+        mean[i] = np.ma.mean(masked_window) if masked_window.count() > 0 else np.nan
+        std[i] = np.ma.std(masked_window) if masked_window.count() > 0 else np.nan
+
+    return mean, std
+
+
+def find_outliers(
+    vector_trace: Dict[int, float], win_size: int, thresh: float
+) -> List[int]:
+    min_win_len = 10
+    max_win_len = min_win_len + 20
+
+    data = np.array(list(vector_trace.values()))
+    sec_nums = list(vector_trace.keys())
+
+    # Calculate preliminary rolling mean and standard deviation
+    preliminary_rm, preliminary_rs = rolling_mean_std(
+        data, win_size, min_win_len, max_win_len
+    )
+
+    # Mask outliers based on the preliminary rolling mean and std
+    outlier_mask = np.abs(data - preliminary_rm) > thresh * preliminary_rs
+    cleaned_data = np.ma.masked_array(data, mask=outlier_mask)
+
+    # Compute rolling mean and std on cleaned data
+    rm, rs = rolling_mean_std(cleaned_data, win_size, min_win_len, max_win_len)
+
+    # Check for NaNs in rm and rs
+    if np.isnan(rm).all() or np.isnan(rs).all():
+        print("Warning: Mean or standard deviation contains NaN values.")
+        return []  # Return an empty list or handle as needed
+
+    # Find the final outlier indices based on the cleaned data
+    outlier_indices = np.where(np.abs(data - rm) > thresh * rs)[0]
+    return sorted(list(sec_nums[i] for i in outlier_indices))
