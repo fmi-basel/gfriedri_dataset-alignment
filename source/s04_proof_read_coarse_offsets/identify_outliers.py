@@ -159,7 +159,7 @@ if __name__ == "__main__":
     with open(args.config) as f:
         config = yaml.safe_load(f)
 
-    trace_ids = [int(i) for i in args.trace_ids]
+    trace_ids = [int(i) for i in args.trace_ids] if args.trace_ids is not None else None
     main_get_cxyz_outliers(
         exp_path=config["output_dir"],
         n_before=int(args.n_before),
