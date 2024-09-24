@@ -128,21 +128,18 @@ if __name__ == "__main__":
     parser.add_argument(
         "--n_before",
         type=int,
-        nargs=1,
         default=9,
         help="Number of coarse offsets from previous sections to compute mean.",
     )
     parser.add_argument(
         "--n_after",
         type=int,
-        nargs=1,
         default=9,
         help="Number of coarse offsets from following sections to compute mean.",
     )
     parser.add_argument(
         "--thresh",
         type=float,
-        nargs=1,
         default=5.0,
         help="Stddev multiplication factor to determine outlier from mean.",
     )
@@ -162,8 +159,8 @@ if __name__ == "__main__":
     trace_ids = [int(i) for i in args.trace_ids] if args.trace_ids is not None else None
     main_get_cxyz_outliers(
         exp_path=config["output_dir"],
-        n_before=int(args.n_before),
-        n_after=int(args.n_after),
-        thresh=float(args.thresh),
+        n_before=args.n_before,
+        n_after=args.n_after,
+        thresh=args.thresh,
         trace_ids=trace_ids,
     )
