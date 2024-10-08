@@ -1,3 +1,6 @@
+import sys
+from faim_ipa.utils import get_git_root
+sys.path.append(str(get_git_root()))
 import argparse
 from glob import glob
 from os import scandir
@@ -6,7 +9,7 @@ from pathlib import Path
 from typing import Optional
 
 import yaml
-from parameter_config import AcquisitionConfig
+from source.s01_parsing_sbem_acquisition.parameter_config import AcquisitionConfig
 from sbem.experiment.parse_utils import get_tile_metadata
 from sbem.record.Section import Section
 from sbem.record.Tile import Tile
